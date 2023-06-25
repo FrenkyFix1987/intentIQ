@@ -2,7 +2,6 @@ import core.BaseTestDriver;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import pages.CategoryPage;
-import pages.CheckOutPage;
 import pages.MainPage;
 import pages.ThankYouPage;
 
@@ -25,6 +24,7 @@ public class MainPageTest extends BaseTestDriver {
 
     @Test
     public void writeOrderIdToFile() {
+        openTheBagsCategoryPage();
         thankYouPage = categoryPage.addProductToCart().checkOut().fillingTheShippingFor();
         thankYouPage.writeToFile();
     }

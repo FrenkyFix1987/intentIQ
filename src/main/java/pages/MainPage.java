@@ -19,6 +19,7 @@ public class MainPage extends BasePageDriver {
     }
 
     public CategoryPage openRelevantCategory(String category, String subCategory) {
+        waitElementsVisibly(navMenu);
         for (WebElement el : navMenu) {
             if (el.getText().contentEquals(category)){
                 openSubNavMenu(el, el.findElements(By.xpath("./../ul/li/a")), subCategory);

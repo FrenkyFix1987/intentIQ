@@ -38,7 +38,8 @@ public class CheckOutPage extends BasePageDriver {
     }
 
     public ThankYouPage fillingTheShippingFor(){
-        waitElementInvisible(driver.findElements(By.xpath("//div[@class='loader']")));
+        waitElementIsNotPresent(By.xpath("//div[@class='loader']"));
+//        waitElementInvisible(driver.findElements());
         Select select = new Select(countries);
         select.selectByVisibleText("Israel");
         emailInput.sendKeys("alexandersivrikov@gmail.com");
@@ -48,10 +49,12 @@ public class CheckOutPage extends BasePageDriver {
         cityInput.sendKeys("Hadera");
         postcodeInput.sendKeys("383064");
         telephoneInput.sendKeys("+972559486022");
-        waitElementInvisible(driver.findElements(By.xpath("//div[@class='loader']")));
-        driverSleep(5000);
+//        waitElementInvisible(driver.findElements(By.xpath("//div[@class='loader']")));
+        waitElementIsNotPresent(By.xpath("//div[@class='loader']"));
+        //        driverSleep(5000);
         nextBtn.click();
-        waitElementInvisible(driver.findElements(By.xpath("//div[@class='loader']")));
+//        waitElementInvisible(driver.findElements(By.xpath("//div[@class='loader']")));
+        waitElementIsNotPresent(By.xpath("//div[@class='loader']"));
         placeOrderBtn.click();
         return new ThankYouPage();
     }

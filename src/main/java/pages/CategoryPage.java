@@ -27,6 +27,7 @@ public class CategoryPage extends BasePageDriver {
     }
 
     public String getPageTitle(){
+        waitElementVisibly(pageTitle);
         return pageTitle.getText();
     }
 
@@ -41,8 +42,8 @@ public class CategoryPage extends BasePageDriver {
     public CheckOutPage checkOut(){
         driverSleep(2000);
         showCartBtn.click();
-        checkOutBtn.click();
         driverSleep(2000);
+        checkOutBtn.click();
         return new CheckOutPage();
     }
 

@@ -1,8 +1,9 @@
 package core;
+
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -19,9 +20,14 @@ public abstract class BasePageDriver {
         WebDriverWait driverWait = new WebDriverWait(driver, Duration.ofSeconds(15));
         driverWait.until(ExpectedConditions.elementToBeClickable(element));
     }
-    public void waitElementInvisible(List<WebElement> elements) {
-        WebDriverWait driverWait = new WebDriverWait(driver, Duration.ofSeconds(5));
-        driverWait.until(ExpectedConditions.invisibilityOfAllElements(elements));
+    public void waitElementVisibly(WebElement element) {
+        WebDriverWait driverWait = new WebDriverWait(driver, Duration.ofSeconds(15));
+        driverWait.until(ExpectedConditions.visibilityOf(element));
+    }
+
+    public void waitElementsVisibly(List<WebElement> elements){
+        WebDriverWait driverWait = new WebDriverWait(driver, Duration.ofSeconds(15));
+        driverWait.until(ExpectedConditions.visibilityOfAllElements(elements));
     }
     public void driverSleep(long time){
         try {
@@ -43,6 +49,17 @@ public abstract class BasePageDriver {
                 moveToElement(el);
                 actions.click().build().perform();
                 break;
+            }
+        }
+    }
+    public void waitElementIsNotPresent(By locator){
+        boolean present = true;
+        while (present) {
+            driverSleep(250);
+            try {
+                present = driver.findElement(locator).isDisplayed();
+            } catch (org.openqa.selenium.NoSuchElementException e) {
+                present = false;
             }
         }
     }
