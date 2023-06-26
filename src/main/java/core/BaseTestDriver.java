@@ -38,7 +38,7 @@ public abstract class BaseTestDriver{
     public void setupChromeDriver(){
         Map<String, Object> prefs = new HashMap<String, Object>();
         prefs.put("profile.default_content_setting_values.cookies", 1);
-        prefs.put("profile.block_third_party_cookies", true);
+        prefs.put("profile.cookie_controls_mode", 1);
         ChromeOptions options = new ChromeOptions();
         options.setExperimentalOption("prefs", prefs);
         options.addArguments("--remote-allow-origins=*");
